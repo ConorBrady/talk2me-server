@@ -2,15 +2,15 @@ class ProblemController < ApplicationController
 
 	def index
 
-		problems = Problem.find(:all).as_json (only: [:id, :title, :description])
+		problems = Problem.find(:all)
 
-		problems.select! |p| do
-			!p.decisions.any? |d| { d.user == @current_user }
+		problems = problems.select do |p|
+			!p.decisions.any? { |d| d.user == @current_user }
 		end
-		
+
 		respond_to do |format|
 			format.json do
-				render json:
+				render json: problems.as_json( only: [:id, :title, :description] )
 			end
 		end
 	end
@@ -29,7 +29,7 @@ class ProblemController < ApplicationController
 
 		respond_to do |format|
 			format.json do
-				render json: problem.as_json ( only: [:id, :title, :description])
+				render json: problem.as_json( only: [:id, :title, :description])
 			end
 		end
 	end

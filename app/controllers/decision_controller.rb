@@ -7,7 +7,7 @@ class DecisionController < ApplicationController
 
 		respond_to do |format|
 			format.json do
-				render json: decisions.as_json (only: [:id, :title, :description])
+				render json: decisions.as_json(only: [:id, :title, :description])
 			end
 		end
 	end
