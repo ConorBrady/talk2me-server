@@ -14,6 +14,7 @@ Talk2me::Application.routes.draw do
 
   post 'decision' => "decision#create"
   get 'decision/:id' => "decision#show"
+  get 'decision' => "decision#index"
 
   post 'conversation_message' => "conversation_message#create"
 
