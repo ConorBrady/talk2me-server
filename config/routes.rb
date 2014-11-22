@@ -8,6 +8,15 @@ Talk2me::Application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
+  post 'user' => "user#create"
+  get 'problem' => "problem#index"
+  post 'problem' => "problem#create"
+
+  post 'decision' => "decision#create"
+  get 'decision/:id' => "decision#show"
+
+  post 'conversation_message' => "conversation_message#create"
+
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

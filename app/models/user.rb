@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
 
-	VALID_EMAIL_REGEX = /^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$/
-	VALID_PASSWORD_REGEX = /^([a-zA-Z0-9@*#]{8,15})$/
+	has_many :problems
+	has_many :decisions
 
-	attr_accessible :password
+	VALID_EMAIL_REGEX = /\A[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}\z/
+	VALID_PASSWORD_REGEX = /\A([a-zA-Z0-9@*#]{8,15})\z/
+
 
 	before_save   { self.email = email.downcase }
 

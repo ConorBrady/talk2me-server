@@ -11,6 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20141122122920) do
+
+  create_table "conversation_messages", force: true do |t|
+    t.string   "text"
+    t.integer  "user_id"
+    t.integer  "decision_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "conversation_messages", ["decision_id"], name: "index_conversation_messages_on_decision_id"
+  add_index "conversation_messages", ["user_id"], name: "index_conversation_messages_on_user_id"
+
+  create_table "decisions", force: true do |t|
+    t.integer  "problem_id"
+    t.integer  "user_id"
+    t.integer  "outcome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "decisions", ["problem_id"], name: "index_decisions_on_problem_id"
+  add_index "decisions", ["user_id"], name: "index_decisions_on_user_id"
+
+  create_table "problems", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "problems", ["user_id"], name: "index_problems_on_user_id"
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
